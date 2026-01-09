@@ -1,8 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const ownerModel = require('../models/owner-model');
 
-router.get('/',(req,res)=>{
+router.post('/create', async (req, res) => {
+    let owners = await ownerModel.find();
+    if (owners.length > 0) {
+        return res.status(503)
+            .send('no permissions to create new owner')
+    }
+    let { fullname, password, products, picture, gstin } = req.body;
+    let createdOwner = await ownerModel.create({
+        fullname,
+        email,
+        password,
+    })
+    res.status(201).send(createdOwner);
+})
+
+router.get('/', (req, res) => {
     res.send('hyy owner');
 });
 
-module.exports = router;
+module.exports = router; 

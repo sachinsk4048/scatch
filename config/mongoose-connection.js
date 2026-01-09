@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-
+const config = require('config');
 mongoose
-.connect('mongodb+srv://root:root@sachin.08ycelm.mongodb.net/scatch')
+.connect(`${config.get('MONGODB_URI')}/scatch`)
 .then(()=>{
     console.log('connected successfully');
 })
