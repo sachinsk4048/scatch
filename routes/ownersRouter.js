@@ -8,7 +8,7 @@ router.post('/create', async (req, res) => {
         return res.status(503)
             .send('no permissions to create new owner')
     }
-    let { fullname, password, products, picture, gstin } = req.body;
+    let { fullname,email, password,  } = req.body;
     let createdOwner = await ownerModel.create({
         fullname,
         email,
